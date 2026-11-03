@@ -1,0 +1,16 @@
+# Reflection — Assignment 4: Sessions, Authentication, and Authorization
+
+### 1. What information connects a browser request to a PHP session?
+The session cookie (usually named `PHPSESSID`) handles this. The browser automatically sends it along with every HTTP request, and the server uses that ID to match up the request with the right server-side session data.
+
+### 2. Why does PHP use `password_verify()` instead of decrypting stored passwords?
+Passwords are saved as one-way hashes instead of encrypted text, so you can't actually decrypt them back into plain text. `password_verify()` works by hashing whatever password the user types in and checking if it matches the stored hash.
+
+### 3. Why is hiding the status-update button insufficient authorization?
+Just hiding a button in the UI doesn't stop anyone from manually sending a request or going straight to the URL. The server has to check permissions on its own end, otherwise someone can easily bypass the front-end interface.
+
+### 4. Why should the authenticated user's identity come from the session rather than a form field?
+Users can easily inspect and change form inputs—even hidden ones—using browser tools. Session data is stored securely on the server side where clients can't mess with it.
+
+### 5. What did the session counter or flash-message exercise reveal about requests that was not obvious before?
+It really showed how stateless HTTP requests are by default. Without sessions keeping track of things in the background, data would just vanish every time a page reloads or redirects.
